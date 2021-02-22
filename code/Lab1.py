@@ -17,6 +17,7 @@ def y_calculator(X1, X2, X3):
     return a[0] + a[1] * X1 + a[2] * X2 + a[3] * X3
 
 Y = [y_calculator(X1[i], X2[i], X3[i]) for i in range(8)]
+Y_min = min(Y)
 
 def x0_calculator(X):
     return (max(X) + min(X))/2
@@ -81,3 +82,6 @@ print(f"\nЕталонне значення функції: Y = {a[0]} + {a[1]}X
 print(f"Функція: Y = {a[0]} + {a[1]}X1 + {a[2]}X2 + {a[3]}X3")
 print("Критерій оптимальності: -> Yсереднє")
 print("Оптимальна точка плану:  Y({0}, {1}, {2}) = {3}".format(*opt_result, "%.1f" % Y[opt_index]))
+
+print("\nДодаткове завдання(Варіант 217):")
+print(f"min(Y):{Y_min}")
