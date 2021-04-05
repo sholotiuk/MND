@@ -120,6 +120,7 @@ class Lab3:
             [abs(coefficients_beta_s[i]) / standard_deviation_beta_s for i in range(len(coefficients_beta_s))])
         print("Коефіцієнти ts: " + ", ".join(list(map(lambda i: "{:.2f}".format(i), t_i))))
         p = 0.95
+        #змінна q вказує на рівень значимості, який обирається для обчислення значення t-критерію при застосуванні розподілу Стьюдента
         q = 0.05
         t = float(student_table.col_values(3)[(m-1)*N].replace(",", "."))
         self.importance = [True if el > t else False for el in list(t_i)]
