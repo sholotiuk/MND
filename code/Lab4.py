@@ -5,6 +5,7 @@ from _pydecimal import Decimal
 from itertools import compress
 import math
 from scipy.stats import f, t
+import sys
 
 #                      x1  x2  x3    x12 x13 x23    x123
 norm_factors_table = [[-1, -1, -1,   +1, +1, +1,    -1],
@@ -121,6 +122,11 @@ def student_criteria(m, N, y_table, normalized_x_table: "with zero factor!"):
     print(*to_print, sep = "; ")
     equation = " ".join(["".join(i) for i in zip(list(map(lambda x: "{:+.2f}".format(x), betas_to_print)),x_i_names)])
     print("Рівняння регресії без незначимих членів: y = " + equation)
+    
+    if importance_to_print.count("важливий") == 2:
+        print("Модель не адекватна")
+        sys.exit()
+        
     return importance
 
 
