@@ -5,6 +5,7 @@ from scipy.stats import f, t
 import numpy
 from itertools import compress
 from functools import reduce
+from timeit import default_timer
 
 xmin = [10, 10, 10]
 xmax = [40, 60, 15]
@@ -178,6 +179,7 @@ def fisher_criteria(m, N, d, x_table, y_table, b_coefficients, importance):
     print("Fp < Ft => модель адекватна" if f_p < f_t else "Fp > Ft => модель неадекватна")
     return True if f_p < f_t else False
 
+t0 = default_timer()
 
 m = 3
 N = 15
@@ -196,6 +198,11 @@ coefs = find_coefficients(natural_plan, y_arr)
 print_equation(coefs)
 
 importance = student_criteria(m, N, y_arr, coefs)
+
+t1 = default_timer()
+
 d = len(list(filter(None, importance)))
 
 fisher_criteria(m, N, d, natural_plan, y_arr, coefs, importance)
+
+print('Середній час пошуку значимих коефіцієнтів:', t1 - t0)
